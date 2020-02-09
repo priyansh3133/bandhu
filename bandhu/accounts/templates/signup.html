@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<title>Bandhu|Signup</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="icon" type="image/ico" href='{% static "images/icons/favicon.ico" %}'/> -->
+	<link rel="stylesheet" type="text/css" href='{% static "vendor/bootstrap/css/bootstrap.min.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "fonts/font-awesome-4.7.0/css/font-awesome.min.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "css1/util.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "css1/main.css" %}'>
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-62 p-b-33">
+
+				<div class="login100-form validate-form flex-sb flex-w">
+					<!-- {% csrf_token %} -->
+					<span class="login100-form-title p-b-53">
+						Sign In With
+					</span>
+
+					<a href="#" class="btn-face m-b-20">
+						<i class="fa fa-facebook-official"></i>
+						Facebook
+					</a>
+
+					<a href="#" class="btn-google m-b-20">
+						<img src='{% static "images/icons/icon-google.png" alt="GOOGLE" %}'>
+						Google
+					</a>
+					<div class="w-full text-center p-t-15">
+						<span class="txt2">
+							Sign Up Using Email
+						</span>
+					</div>
+					<form class="supformhtml" id="Signupform"  method="POST">{% csrf_token %}
+						{% for field in form %}
+			  
+						  {{field}} <br>
+			  
+						  {% for error in field.errors %}
+			  
+						  <p style="color:crimson">{{error}}</p>
+			  
+						  {% endfor %}
+			  
+						{% endfor %}
+						<button type="submit" class="login100-form-btn" name="button">Create An Account</button>
+					</form>
+					<!-- <div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="email" name="email" placeholder="Email">
+					</div>				
+					<div class="col-md-2" style="height: 10px;">
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+					</div>
+					<div class="col-md-2" style="height: 10px;">
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="password2" placeholder="Confirm Password">
+					</div>
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn" type="submit">
+							Sign Up
+						</button>
+					</div> -->
+
+					<div class="w-full text-center p-t-15">
+						<span class="txt2">
+							Already a member?
+						</span>
+						<a href="{% url 'loginpage' %}" class="txt2 bo1">
+							Sign In Using Email
+						</a>
+					</div>
+				</div>
+
+				<!-- <form class="supformhtml" id="Signupform"  method="POST">{% csrf_token %}
+
+					
+		  
+					{% for field in form %}
+		  
+					  {{field}} <br>
+		  
+					  {% for error in field.errors %}
+		  
+					  <p style="color:crimson">{{error}}</p>
+		  
+					  {% endfor %}
+		  
+					{% endfor %}
+					<button type="submit" class="signupbtn" name="button">Create An Account</button>
+				  </form> -->
+			</div>
+		</div>
+	</div>
+	<div id="dropDownSelect1"></div>
+</body>
+</html>

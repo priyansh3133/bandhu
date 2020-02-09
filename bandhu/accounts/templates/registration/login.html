@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<title>Bandhu|Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+<!-- <link rel="icon" type="image/ico" href='{% static "images/icons/favicon.ico" %}'/> -->
+	<link rel="stylesheet" type="text/css" href='{% static "vendor/bootstrap/css/bootstrap.min.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "fonts/font-awesome-4.7.0/css/font-awesome.min.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "css1/util.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "css1/main.css" %}'>
+</head>
+<body>
+	<div class="limiter">
+    	<div class="container-login100">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-62 p-b-33">
+				<form class="login100-form validate-form flex-sb flex-w" method="POST">
+					{% csrf_token %}
+					<span class="login100-form-title p-b-53">
+						Sign In With
+					</span>
+					<a href="{% url 'social:begin' 'facebook' %}" class="btn-face m-b-20">
+						<i class="fa fa-facebook-official"></i>
+						Facebook
+					</a>
+					<a href="{% url 'social:begin' 'google-oauth2' %}" class="btn-google m-b-20">
+						<img src='{% static "images/icons/icon-google.png" alt="GOOGLE" %}' alt="GOOGLE">
+						Google
+					</a>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
+						<input class="input100" type="email" name="email" placeholder="Email">
+					</div>				
+					<div class="col-md-2" style="height: 10px;">
+						
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+					</div>
+					<div class="p-t-13 p-b-9">
+						<a href="{% url 'password_reset' %}" class="txt2 bo1 m-l-5">
+							Forgot Password?
+						</a>
+					</div>
+
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn" type="submit">
+							Sign In
+						</button>
+					</div>
+
+					<div class="w-full text-center p-t-15">
+						<span class="txt2">
+							Not a member?
+						</span>
+						<a href="{% url 'signuppage' %}" class="txt2 bo1">
+							Sign up now
+						</a>
+					</div>
+				</form>
+
+				<!-- <form class="supformhtml" id="Signupform"  method="POST">
+					<input type="email" name="email" placeholder="Your Email" class="formclass">
+					<input type="password" name="password" placeholder="Your Password" class="formclass"><br>
+		  
+					<a href="{% url 'password_reset' %}" class="fgtpass">Forgot Your Password ?</a><br>
+		  
+					<button type="submit" class="signupbtn" name="button">Log In</button>
+				  </form> -->
+			</div>
+	    </div>
+	</div>
+</body>
+</html>
