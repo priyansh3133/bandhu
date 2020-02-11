@@ -128,7 +128,7 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = '/'
 
 from .email_info import *

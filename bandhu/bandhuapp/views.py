@@ -1,8 +1,12 @@
 from django.shortcuts import render
-
+from accounts.models import User
+from social_django.models import UserSocialAuth
 # Create your views here.
 
 def index(request):
+    obj = UserSocialAuth.objects.all()
+    obj1 = User.objects.all()
+    print(obj,obj1)
     return render(request, 'landing_page.html')
 
 def cause1(request):
