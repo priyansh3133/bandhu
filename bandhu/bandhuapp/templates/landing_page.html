@@ -26,6 +26,9 @@
 
 		<link rel="stylesheet" href='{% static "css/prettyPhoto.css" %}'>
 
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css">
+
 		<link rel="shortcut icon" href="images/favicon.png">
 
 	</head>
@@ -158,7 +161,7 @@
 						<!-- <div class="col-lg-3 col-md-6 p-2 d-flex justify-content-center"> -->
 						<div class="mx-0 px-2">
 							<div class="card w-100 mx-auto" style="max-width: 24rem; max-height: 40rem;">
-								<img src="{% static 'img/pimg3.jpg' %}">
+								<img src="{% static 'img/pimg3.jpg' %}" class="rounded-top">
 								<div class="card-body pb-0">
 									<h5 class="card-title content-title" style="text-align: center;">Ankurayan</h5>
 									<p class="content-description  font-open-sans mb-3">
@@ -173,7 +176,7 @@
 						<!-- <div class="col-lg-3 col-md-6 p-2 d-flex justify-content-center"> -->
 						<div class="mx-0 px-2">
 							<div class="card w-100 mx-auto" style="max-width: 24rem; max-height: 40rem;">
-								<img src="{% static 'img/pimg4.jpg' %}">
+								<img src="{% static 'img/pimg4.jpg' %}" class="rounded-top">
 								<div class="card-body pb-0">
 									<h5 class="card-title content-title">Sanskarbarg</h5>
 									<p class="content-description  font-open-sans mb-3">
@@ -188,7 +191,7 @@
 						<!-- <div class="col-lg-3 col-md-6 p-2 d-flex justify-content-center"> -->
 						<div class="mx-0 px-2">
 							<div class="card w-100 mx-auto" style="max-width: 24rem; max-height: 40rem;">
-								<img src="{% static 'img/pimg2.jpg' %}">
+								<img src="{% static 'img/pimg2.jpg' %}" class="rounded-top">
 								<div class="card-body pb-0">
 									<h5 class="card-title content-title">Anand Kendra</h5>
 									<p class="content-description  font-open-sans mb-3">
@@ -203,7 +206,7 @@
 						<!-- <div class="col-lg-3 col-md-6 p-2 d-flex justify-content-center"> -->
 						<div class="mx-0 px-2">
 							<div class="card w-100 mx-auto" style="max-width: 24rem; max-height: 40rem;">
-								<img src="{% static 'img/pimg1.jpg' %}">
+								<img src="{% static 'img/pimg1.jpg' %}" class="rounded-top">
 								<div class="card-body pb-0">
 									<h5 class="card-title content-title">Ashram</h5>
 									<p class="content-description  font-open-sans mb-3">
@@ -218,7 +221,7 @@
 						<!-- <div class="col-lg-3 col-md-6 p-2 d-flex justify-content-center"> -->
 							<div class="mx-0 px-2">
 								<div class="card w-100 mx-auto" style="max-width: 24rem; max-height: 40rem;">
-									<img src="{% static 'img/pimg2.jpg' %}">
+									<img src="{% static 'img/pimg2.jpg' %}" class="rounded-top">
 									<div class="card-body pb-0">
 										<h5 class="card-title content-title">Charity Work</h5>
 										<p class="content-description  font-open-sans mb-3">
@@ -329,7 +332,7 @@
 		<section id="recent-activities">
 			<div class="about-section"> 
 
-				<div class="gray-bg angular" style="margin-bottom: 0; padding-bottom: 0; padding-top: 50px;">
+				<div class="gray-bg angular" style="margin-bottom: 0; padding: 50px 0;">
 					<!-- <div class="top-angle"></div> -->
 					<div class="container">
 						<div class="row">
@@ -351,10 +354,11 @@
 										</p>
 										<a href="{% url 'cause2' %}" class="btn custom-btn angle-effect">Read more</a> -->
 
+										{% comment %}
 										<div class="row" style="margin: 60px 0;">
 											<div class="col-lg-4 col-md-6 p-2 d-flex justify-content-center">
 												<div class="card w-100  border-rounded mx-auto" style="max-width: 24rem; max-height: 40rem;">
-													<img src="{% static 'img/elements/a.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
+													<img src="{% static 'img/pimg6.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
 													<div class="card-body pb-0">
 														<h5 class="card-title font-weight-bold">Activity-Title</h5>
 														<p class="m-2 font-italic  font-open-sans mb-3">
@@ -369,7 +373,7 @@
 											</div>
 											<div class="col-lg-4 col-md-6 p-2 d-flex justify-content-center">
 												<div class="card w-100  border-rounded mx-auto" style="max-width: 24rem; max-height: 40rem;">
-													<img src="{% static 'img/elements/a.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
+													<img src="{% static 'img/pimg6.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
 													<div class="card-body pb-0">
 														<h5 class="card-title font-weight-bold">Activity-Title</h5>
 														<p class="m-2 font-italic  font-open-sans mb-3">
@@ -383,7 +387,7 @@
 											</div>
 											<div class="col-lg-4 col-md-6 p-2 d-flex justify-content-center">
 												<div class="card w-100  border-rounded mx-auto" style="max-width: 24rem; max-height: 40rem;">
-													<img src="{% static 'img/elements/a.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
+													<img src="{% static 'img/pimg6.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
 													<div class="card-body pb-0">
 														<h5 class="card-title font-weight-bold">Activity-Title</h5>
 														<p class="m-2 font-italic  font-open-sans mb-3">
@@ -396,6 +400,99 @@
 												</div>
 											</div>
 										</div>
+										{% endcomment %}
+
+										<div class="glide">
+											<div class="glide__track" data-glide-el="track">
+											  <ul class="glide__slides">
+													<li class="glide__slide">
+														<div class="card w-100 shadow-lg border border-primary border-rounded mx-auto" style="max-width: 24rem; max-height: 40rem;">
+															<img src="{% static 'img/pimg6.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
+															<div class="card-body pb-0">
+																<h5 class="card-title font-weight-bold">Activity-Title</h5>
+																<p class="m-2 font-italic  font-open-sans mb-3">
+																<!-- <i class="fas fa-calendar-alt font-weight-lighter "></i> -->
+																Description
+																<br>
+																</p>
+																<a href="" class="stretched-link"></a>
+															</div>
+														</div>
+													</li>
+													<li class="glide__slide">
+														<div class="card w-100 shadow-lg border border-primary border-rounded mx-auto" style="max-width: 24rem; max-height: 40rem;">
+															<img src="{% static 'img/pimg6.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
+															<div class="card-body pb-0">
+																<h5 class="card-title font-weight-bold">Activity-Title</h5>
+																<p class="m-2 font-italic  font-open-sans mb-3">
+																<!-- <i class="fas fa-calendar-alt font-weight-lighter "></i> -->
+																Description
+																<br>
+																</p>
+																<a href="" class="stretched-link"></a>
+															</div>
+														</div>
+													</li>
+													<li class="glide__slide">
+														<div class="card w-100 shadow-lg border border-primary border-rounded mx-auto" style="max-width: 24rem; max-height: 40rem;">
+															<img src="{% static 'img/pimg6.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
+															<div class="card-body pb-0">
+																<h5 class="card-title font-weight-bold">Activity-Title</h5>
+																<p class="m-2 font-italic  font-open-sans mb-3">
+																<!-- <i class="fas fa-calendar-alt font-weight-lighter "></i> -->
+																Description
+																<br>
+																</p>
+																<a href="" class="stretched-link"></a>
+															</div>
+														</div>
+													</li>
+													<li class="glide__slide">
+														<div class="card w-100 shadow-lg border border-primary border-rounded mx-auto" style="max-width: 24rem; max-height: 40rem;">
+															<img src="{% static 'img/pimg6.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
+															<div class="card-body pb-0">
+																<h5 class="card-title font-weight-bold">Activity-Title</h5>
+																<p class="m-2 font-italic  font-open-sans mb-3">
+																<!-- <i class="fas fa-calendar-alt font-weight-lighter "></i> -->
+																Description
+																<br>
+																</p>
+																<a href="" class="stretched-link"></a>
+															</div>
+														</div>
+													</li>
+													<li class="glide__slide">
+														<div class="card w-100 shadow-lg border border-primary border-rounded mx-auto" style="max-width: 24rem; max-height: 40rem;">
+															<img src="{% static 'img/pimg6.jpg' %}" class="card-img-top home-card-img" alt=""  width="300px">
+															<div class="card-body pb-0">
+																<h5 class="card-title font-weight-bold">Activity-Title</h5>
+																<p class="m-2 font-italic  font-open-sans mb-3">
+																<!-- <i class="fas fa-calendar-alt font-weight-lighter "></i> -->
+																Description
+																<br>
+																</p>
+																<a href="" class="stretched-link"></a>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										  	<div class="glide__arrows disable_arrows" data-glide-el="controls">
+												<button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+												<button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+											</div>
+											<div class="glide__bullets" data-glide-el="controls[nav]">
+												<button class="glide__bullet" data-glide-dir="=0"></button>
+												<button class="glide__bullet" data-glide-dir="=1"></button>
+												<button class="glide__bullet" data-glide-dir="=2"></button>
+												<button class="glide__bullet" data-glide-dir="=3"></button>
+												<button class="glide__bullet" data-glide-dir="=4"></button>
+												<!-- <button class="glide__bullet" data-glide-dir="=5"></button>
+												<button class="glide__bullet" data-glide-dir="=6"></button>
+												<button class="glide__bullet" data-glide-dir="=7"></button>
+												<button class="glide__bullet" data-glide-dir="=8"></button> -->
+											</div>
+									  </div>
 
 									</div><!-- /.content-box -->
 								</div><!-- row -->
@@ -775,6 +872,9 @@
 
 		<!-- included plugins inside  plugins.js -->
 		<script src='{% static "js/jquery.parallax.js" %}'></script>				
+
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.js"></script>
+		<script type="text/javascript" src='{% static "js/glide.js" %}'></script>
 
 		<!-- Include functions.js -->
 		<script src='{% static "js/functions.js" %}'></script>

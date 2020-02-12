@@ -131,9 +131,9 @@ time {
     position: relative;
 }
 
-.white-bg.angular {
+/* .white-bg.angular {
     margin-bottom: 170px;
-}
+} */
 
 .angular .top-angle, .angular .bottom-angle {
     position: absolute;
@@ -977,6 +977,7 @@ a.donate:hover {
     line-height: 54px;
     text-align: center;
     text-transform: uppercase;
+    margin-bottom: 50px;
     /* width: 320px; */
     /* float: left; */
     /* margin: 0; */
