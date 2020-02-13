@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.views import LoginView,LogoutView,PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView
-from .views import signup,activate,login_user,signup_success,activated,not_activated,signup_failure,change_password
+from .views import signup,signup_success_admin,activate,login_user,signup_success,activated,not_activated,signup_failure,change_password
 
 urlpatterns = [
     path('activated/', activated,name="activatedpage"),
+    path('signup_success_admin/', signup_success_admin,name="adminsuccesspage"),
     path('activationerror/', not_activated,name="not_activatedpage"),
     path('signup/success/', signup_success,name="signup_success_page"),
     path('signup/failure/', signup_failure,name="signup_failure_page"),
