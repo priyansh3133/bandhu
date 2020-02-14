@@ -3,8 +3,13 @@ Hi,
 {{msg}}
 User email : {{email}}
 
-Please Visit the Link and click on the is_active checkbox. Don't Forget to save the changes.
+Please Visit the Link and click on the is_active checkbox to activate user account. Don't Forget to save the changes.
 http://127.0.0.1:8000/admin/accounts/user/{{pk}}/change/
+
+                          --------------------------------OR--------------------------------
+
+Click on the link below to activate user account.
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
 
 Regards
 Team Bandhu

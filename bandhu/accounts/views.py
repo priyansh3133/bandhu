@@ -21,11 +21,16 @@ from .tokens import account_activation_token
 from .forms import RegisterForm
 from bandhuapp.models import Profile
 
+import random
+
 def signup_success(request):
     return render(request,'signup_successful.html')
 
 def signup_success_admin(request):
     return render(request,'signup_success.html')
+
+def verified_success_admin(request):
+    return render(request,'admin_verified.html')
 
 def signup_failure(request):
     return render(request,'signup_failure_page.html')
@@ -76,8 +81,7 @@ def signup(request):
         form = RegisterForm()
     return render(request, 'signup.html', {'form': form,'done':0})
 
-
-def activate(request, uidb64, token):
+def verification(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -85,16 +89,16 @@ def activate(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = False
-        user.save()
-        # return redirect('home')
+        current_site = get_current_site(request)
         mail_subject = '[noreply] New User Signed Up'
         msg = 'A new User has signed up.'
         message = render_to_string('acc_active.html', {
             'user': user,
-            'email':user.email,
             'pk':uid,
+            'domain': current_site.domain,
             'msg':msg,
+            'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+            'token':account_activation_token.make_token(user),
         })
         to_email = "guptaheet53@gmail.com"
         print(to_email)
@@ -104,6 +108,21 @@ def activate(request, uidb64, token):
         print(email)
         email.send()
         return redirect('adminsuccesspage')
+    else:
+        return redirect('not_activatedpage')
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+        print(uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        # return redirect('home')
+        return redirect('verifiedaccount')
     else:
         return redirect('not_activatedpage')
 
@@ -127,7 +146,11 @@ def login_user(request):
                 if obj is not None:
                     return HttpResponseRedirect('/')
                 else:
-                    return HttpResponseRedirect('/profile/')
+                    ob1 = Profile.objects.filter(email=email).first()
+                    if ob1:
+                        return HttpResponseRedirect('/')
+                    else:
+                        return HttpResponseRedirect('/profile/')
         else:
             val=3
     return render(request,'registration/login.html',{'error':'Please Enter correct username and password !!','val':val})
