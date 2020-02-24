@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.views import LoginView,LogoutView,PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView
-from .views import signup,activate,login_user,signup_success,activated,not_activated,signup_failure,change_password
+from .views import verification,verified_success_admin,signup,signup_success_admin,activate,login_user,signup_success,activated,not_activated,signup_failure,change_password
 
 urlpatterns = [
     path('activated/', activated,name="activatedpage"),
+    path('verified/', verified_success_admin,name="verifiedaccount"),
+    path('verify/<uidb64>[0-9A-Za-z_\-]/<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20}/', verification,name="verificationpage"),
+    path('signup_success_admin/', signup_success_admin,name="adminsuccesspage"),
     path('activationerror/', not_activated,name="not_activatedpage"),
     path('signup/success/', signup_success,name="signup_success_page"),
     path('signup/failure/', signup_failure,name="signup_failure_page"),
