@@ -128,7 +128,7 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'Profilepage'
 LOGOUT_REDIRECT_URL = '/'
 
 from .email_info import *
@@ -160,6 +160,5 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '61ba279d2d0e5f20998b104e79f4d250'  # App Secret
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '252898090218-r9n3ch5930p74h87jgu2tmdrssda13u4.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '2izi6UkUjLJ0UtiR9c6zng46'
 
-# 252898090218-r9n3ch5930p74h87jgu2tmdrssda13u4.apps.googleusercontent.com 
+# 252898090218-r9n3ch5930p74h87jgu2tmdrssda13u4.apps.googleusercontent.com
 # 2izi6UkUjLJ0UtiR9c6zng46 #KEY
-
