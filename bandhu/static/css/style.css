@@ -956,10 +956,10 @@ a.donate:hover {
 .initiatives-overlay > div > div:hover {
     /* transform: translateY(-70px); */
     /* padding-bottom: 70px; */
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
     background:#ffb307;
     color: black;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 /* 7 - Recent Activities Section
@@ -1525,17 +1525,22 @@ a.donate:hover {
     background-color: #f2f2f6;
     border: none;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    height: 250px;
+    height: 280px !important;
+    min-width: 250px !important;
+    max-width: 250px !important;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 15px 15px 15px; 
 }
 
 #about .card img{
-    height: 200px;
+    height: 230px;
     background-size: cover;
+
 }
 
 #about .card-body h5{
     text-align: center;
-    
+    box-sizing: border-box;
 }
 
 #about .card:hover img{
@@ -1544,6 +1549,7 @@ a.donate:hover {
 }
 #about .content-description{
     display:none;
+    box-sizing: border-box;
 }
 #about .card:hover h5 {
     animation-name: cardanim;
@@ -1574,4 +1580,24 @@ a.donate:hover {
     to{
         opacity: 1;
     }
+}
+#about .card:hover{
+    background-color: #ffb307;
+    color:black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 480px){
+.about-section .content-title, .volunteer-section .content-title {
+    padding-top: 0px !important;
+}
+}
+
+#recent-activities .card {
+    border: none !important;
+}
+
+#recent-activities .glide__slides{
+    background-color: white !important;
 }
