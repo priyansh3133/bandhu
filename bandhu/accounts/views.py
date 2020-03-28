@@ -89,6 +89,8 @@ def verification(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
         current_site = get_current_site(request)
         mail_subject = '[noreply] New User Signed Up'
         msg = 'A new User has signed up.'
@@ -100,7 +102,7 @@ def verification(request, uidb64, token):
             'uid':urlsafe_base64_encode(force_bytes(user.pk)),
             'token':account_activation_token.make_token(user),
         })
-        to_email = "guptaheet53@gmail.com"
+        to_email = "priyanshgarg30@gmail.com"
         print(to_email)
         email = EmailMessage(
                     mail_subject, message, to=[to_email]
@@ -119,7 +121,7 @@ def activate(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
+        user.auth = True
         user.save()
         # return redirect('home')
         return redirect('verifiedaccount')
@@ -129,31 +131,36 @@ def activate(request, uidb64, token):
 
 def login_user(request):
     logout(request)
-    email = password = ''
-    val=0
+    err_code = 0
+
     if request.POST:
         email = request.POST['email']
         password = request.POST['password']
-        val = 1
+
         user = authenticate(email=email, password=password)
-        obj = User.objects.filter(email=email).first()
-        if obj.is_active is False:
-            val=2
-        elif user is not None:
-            if user.is_active:
+
+        if user is not None:
+            user_obj = User.objects.get(email=email)
+
+            if user_obj.is_active is False:
+                err_code = 1
+            elif user_obj.auth is False:
+                err_code = 2
+            else:
                 login(request, user)
-                obj = Profile.objects.filter(email=email).first()
-                if obj is not None:
+
+                pr_obj = Profile.objects.filter(email=email)
+                if pr_obj.exists():
                     return HttpResponseRedirect('/')
                 else:
-                    ob1 = Profile.objects.filter(email=email).first()
-                    if ob1:
-                        return HttpResponseRedirect('/')
-                    else:
-                        return HttpResponseRedirect('/profile/')
+                    return HttpResponseRedirect('/profile/')
         else:
-            val=3
-    return render(request,'registration/login.html',{'error':'Please Enter correct username and password !!','val':val})
+            err_code = 3
+
+    context = {
+        'err_code' : err_code,
+    }
+    return render(request, 'registration/login.html', context)
 
 
 def change_password(request):

@@ -63,13 +63,15 @@ class User(PermissionsMixin,AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False) # a admin user; non super-user
     is_admin = models.BooleanField(default=False) # a superuser
+    auth = models.BooleanField(default=False) # authentication by admin
     # notice the absence of a "Password field", that's built in.
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = [] # Email & Password are required by default.
 
     def save(self, *args, **kwargs):
-        if self.is_active==True:
+        original = User.objects.filter(pk=self.pk)   # Will return empty set if user is created for the first time
+        if original.exists() and original[0].auth is False and self.auth is True:
             mail_subject = '[noreply] Account Verified'
             msg = 'Your account has been verified by the admin, you can now Login to Bandhu.'
             message = render_to_string('acc_verified.html', {

@@ -35,10 +35,11 @@
 						</span>
 					</div>
 					<!-- Main login area  -->
-					{% if val == 2 %}
+					{% if err_code == 1 %}
 					<p class="mt-3 mb-3" style="color:red;">*Your Account has not been activated. Please activate your account to continue.</p>
-					{% endif %}
-					{% if val == 3 %}
+					{% elif err_code == 2 %}
+					<p class="mt-3 mb-3" style="color:red;">*Your Account is not yet authorised. Kindly contact admin.</p>
+					{% elif err_code == 3 %}
 					<p class="mt-3 mb-3" style="color:red;">*Please enter Correct Email and Password.</p>
 					{% endif %}
 					<div class="wrap-input100 validate-input" data-validate = "Username is required">
