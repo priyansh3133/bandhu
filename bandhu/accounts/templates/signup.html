@@ -47,7 +47,8 @@
 					</div>
 					{% endfor %}
 
-					{% comment %} <div class="wrap-input100 validate-input" data-validate = "Username is required">
+					{% comment %}
+					<div class="wrap-input100 validate-input" data-validate = "Username is required">
 						<input class="input100" type="email" name="email" placeholder="Email">
 					</div>
 					<div class="col-md-2" style="height: 10px;">
@@ -59,7 +60,9 @@
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
 						<input class="input100" type="password" name="password2" placeholder="Confirm Password">
-					</div> {% endcomment %}
+					</div>
+					{% endcomment %}
+
 					<div class="container-login100-form-btn m-t-17">
 						<button class="login100-form-btn" type="submit">
 							Sign Up
@@ -70,7 +73,7 @@
 						<span class="txt2">
 							Already a member?
 						</span>
-						<a href="{% url 'loginpage' %}" class="txt2 bo1">
+						<a href="{% url 'login' %}" class="txt2 bo1">
 							Sign In Using Email
 						</a>
 					</div>

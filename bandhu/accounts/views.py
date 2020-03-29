@@ -23,24 +23,42 @@ from bandhuapp.models import Profile
 
 import random
 
-def signup_success(request):
-    return render(request,'signup_successful.html')
+# Create your views here.
 
-def signup_success_admin(request):
-    return render(request,'signup_success.html')
+def login(request):
+    logout(request)
+    err_code = 0
 
-def verified_success_admin(request):
-    return render(request,'admin_verified.html')
+    if request.POST:
+        email = request.POST['email']
+        password = request.POST['password']
 
-def signup_failure(request):
-    return render(request,'signup_failure_page.html')
+        user = authenticate(email=email, password=password)   # Returns the User object if credentials are correct AND USER IS ACTIVE
 
-def activated(request):
-    return render(request,'activated.html')
+        if user is not None:
+            if user.auth is False:
+                err_code = 2
+            else:
+                login(request, user)
 
-def not_activated(request):
-    return render(request,'not_activated.html')
+                pr_obj = Profile.objects.filter(email=email)
+                if pr_obj.exists():
+                    return HttpResponseRedirect('/')
+                else:
+                    return HttpResponseRedirect('/profile/')
+        else:
+            user_obj = User.objects.get(email=email)
 
+            # If user is not authenticated because it is NOT ACTIVE
+            if user_obj.check_password(password) and user_obj.is_active is False:
+                err_code = 1
+            else:
+                err_code = 3
+
+    context = {
+        'err_code' : err_code,
+    }
+    return render(request, 'registration/login.html', context)
 
 def signup(request):
     if request.method == 'POST':
@@ -81,7 +99,7 @@ def signup(request):
         form = RegisterForm()
     return render(request, 'signup.html', {'form': form,'done':0})
 
-def verification(request, uidb64, token):
+def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -109,11 +127,12 @@ def verification(request, uidb64, token):
         )
         print(email)
         email.send()
-        return redirect('adminsuccesspage')
+        return redirect('activated')
     else:
-        return redirect('not_activatedpage')
+        # return redirect('not_activatedpage')
+        return render(request, 'token_expired.html')
 
-def activate(request, uidb64, token):
+def authenticate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -124,70 +143,49 @@ def activate(request, uidb64, token):
         user.auth = True
         user.save()
         # return redirect('home')
-        return redirect('verifiedaccount')
+        return redirect('authenticated')
     else:
-        return redirect('not_activatedpage')
+        # return redirect('not_activatedpage')
+        return render(request, 'token_expired.html')   # Token expired
+
+def activated(request):
+    return render(request,'account_activated.html')
+
+def authenticated(request):
+    return render(request,'account_authenticated.html')
+
+def signup_success(request):
+    return render(request,'signup_successful.html')
+
+def signup_failure(request):
+    return render(request,'signup_failure_page.html')
 
 
-def login_user(request):
-    logout(request)
-    err_code = 0
+# def change_password(request):
+#     val=3
+#     usb = User.objects.filter(email=request.user.email).first()
+#     stud_info = StudentInfo.objects.filter(student_id=usb).first()
+#     if request.method == 'POST':
+#         print(request.POST)
+#         form = PasswordChangeForm(request.user, request.POST)
+#         val=3
+#         print("erro")
+#         if form.is_valid():
+#             user = form.save()
+#             update_session_auth_hash(request, user)  # Important!
+#             messages.success(request, 'Your password was successfully updated!')
+#             val=0
+#             return render(request,'change_password.html',{'message':'Your password was successfully updated!','val':val,'stud_info':stud_info})
+#         else:
+#             messages.error(request, 'Please correct the error below.')
+#             val=1
+#             if request.POST.get('new_password1') != request.POST.get('new_password2'):
+#                 val=3
+#                 return render(request,'change_password.html',{'message':'Your new password and confirmation dont match.!!','val':val,'stud_info':stud_info})
+#             return render(request,'change_password.html',{'message':'Current Password is incorrect!!','val':val,'stud_info':stud_info})
+#     else:
+#         form = PasswordChangeForm(request.user)
 
-    if request.POST:
-        email = request.POST['email']
-        password = request.POST['password']
-
-        user = authenticate(email=email, password=password)
-
-        if user is not None:
-            user_obj = User.objects.get(email=email)
-
-            if user_obj.is_active is False:
-                err_code = 1
-            elif user_obj.auth is False:
-                err_code = 2
-            else:
-                login(request, user)
-
-                pr_obj = Profile.objects.filter(email=email)
-                if pr_obj.exists():
-                    return HttpResponseRedirect('/')
-                else:
-                    return HttpResponseRedirect('/profile/')
-        else:
-            err_code = 3
-
-    context = {
-        'err_code' : err_code,
-    }
-    return render(request, 'registration/login.html', context)
-
-
-def change_password(request):
-    val=3
-    usb = User.objects.filter(email=request.user.email).first()
-    stud_info = StudentInfo.objects.filter(student_id=usb).first()
-    if request.method == 'POST':
-        print(request.POST)
-        form = PasswordChangeForm(request.user, request.POST)
-        val=3
-        print("erro")
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
-            val=0
-            return render(request,'change_password.html',{'message':'Your password was successfully updated!','val':val,'stud_info':stud_info})
-        else:
-            messages.error(request, 'Please correct the error below.')
-            val=1
-            if request.POST.get('new_password1') != request.POST.get('new_password2'):
-                val=3
-                return render(request,'change_password.html',{'message':'Your new password and confirmation dont match.!!','val':val,'stud_info':stud_info})
-            return render(request,'change_password.html',{'message':'Current Password is incorrect!!','val':val,'stud_info':stud_info})
-    else:
-        form = PasswordChangeForm(request.user)
-
-    return render(request, 'change_password.html', {
-        'form': form,'val':2,'stud_info':stud_info
-    })
+#     return render(request, 'change_password.html', {
+#         'form': form,'val':2,'stud_info':stud_info
+#     })
