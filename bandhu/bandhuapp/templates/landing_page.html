@@ -68,7 +68,7 @@
 
 					<nav class="collapse navbar-collapse">
 						<!-- Main navigation -->
-						<a href="{% url 'loginpage' %}" class="donate pull-right"> SignUp/SignIn</a>
+						<a href="{% url 'login' %}" class="donate pull-right"> SignUp/SignIn</a>
 						<ul class="nav navbar-nav pull-right">
 							<li class="active"><a href="#top-section">Home</a></li>
 							<li><a href="#about">About</a></li>
@@ -128,10 +128,10 @@
 					<a class="nav-link js-scroll-trigger" style="font-weight:bold;color:white;" href="{% url 'Profilepage' %}">{{user.email}}</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link js-scroll-trigger" style="font-weight:bold;color:white;"  href="{% url 'logoutpage' %}">Logout</a>
+					<a class="nav-link js-scroll-trigger" style="font-weight:bold;color:white;"  href="{% url 'logout' %}">Logout</a>
 				</li>
 				{% else %}
-				<a href="{% url 'loginpage' %}" class="donate pull-right" style="text-transform: unset;"> SignIn</a>
+				<a href="{% url 'login' %}" class="donate pull-right" style="text-transform: unset;"> SignIn</a>
 				{% endif %}
 
 			  </div>

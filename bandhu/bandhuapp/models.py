@@ -14,14 +14,12 @@ class Profile(models.Model):
     def __str__(self):
         return self.full_name
 
-class Charity(models.Model):
-    charityName = models.CharField(max_length=350)
-    charityDescription = models.TextField(max_length=1000)
-    charityType = models.choices()
-    charityAddressLine1 = models.CharField(max_length=350)
-    charityCity = models.CharField(max_length=100)
+# class Charity(models.Model):
+#     charityName = models.CharField(max_length=350)
+#     charityDescription = models.TextField(max_length=1000)
+#     charityType = models.choices()
+#     charityAddressLine1 = models.CharField(max_length=350)
+#     charityCity = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.charityName
-
-class 
+#     def __str__(self):
+#         return self.charityName

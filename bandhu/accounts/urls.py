@@ -15,24 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from django.contrib.auth.views import LoginView,LogoutView,PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView,PasswordResetCompleteView
-from .views import verification,verified_success_admin,signup,signup_success_admin,activate,login_user,signup_success,activated,not_activated,signup_failure,change_password
+from django.contrib.auth import views as auth_views
+from . import views
 
 urlpatterns = [
-    path('activated/', activated,name="activatedpage"),
-    path('verified/', verified_success_admin,name="verifiedaccount"),
-    path('verify/<uidb64>[0-9A-Za-z_\-]/<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20}/', verification,name="verificationpage"),
-    path('signup_success_admin/', signup_success_admin,name="adminsuccesspage"),
-    path('activationerror/', not_activated,name="not_activatedpage"),
-    path('signup/success/', signup_success,name="signup_success_page"),
-    path('signup/failure/', signup_failure,name="signup_failure_page"),
-    path('signup/', signup,name="signuppage"),
-    path('activate/<uidb64>[0-9A-Za-z_\-]/<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20}/', activate, name='activate'),
-    path('login/', login_user, name="loginpage"),
-    path('logout/', LogoutView.as_view(template_name='registration/logout.html/'),name='logoutpage', kwargs={'next_page':'homepage'}),
-    path('password_reset/', PasswordResetView.as_view(template_name='registration/reset_password.html'),name='password_reset'),
-    path('password_reset/done', PasswordResetDoneView.as_view(template_name='registration/passwordresetdone.html'),name='password_reset_done'),
-    path('reset/<uidb64>[0-9A-Za-z_\-]/<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20}/', PasswordResetConfirmView.as_view(template_name='registration/passwordresetconfirm.html'),name="password_reset_confirm"),
-    path('reset/done/', PasswordResetCompleteView.as_view(template_name='registration/passwordresetcomplete.html'), name="password_reset_complete"),
-    path('change_password/', change_password, name='change_password'),
+
+    path('login/', views.login, name="login"),
+    path('signup/', views.signup,name="signup"),
+    path('activate/<slug:uidb64>/<slug:token>/', views.activate, name='activate'),
+    path('authenticate/<slug:uidb64>/<slug:token>/', views.authenticate, name='authenticate'),
+
+    path('activated/', views.activated,name="activated"),   # User Activation Complete
+    path('authenticated/', views.authenticated,name="authenticated"),   # User Authentication Complete
+
+    path('signup/success/', views.signup_success,name="signup_success_page"),
+    path('signup/failure/', views.signup_failure,name="signup_failure_page"),
+    
+    # Django Auth Urls
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
